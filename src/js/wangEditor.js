@@ -8583,3 +8583,5 @@ _e(function (E, $) {
     // 最终返回wangEditor构造函数
     return window.wangEditor;
 });
+
+export default window.wangEditor

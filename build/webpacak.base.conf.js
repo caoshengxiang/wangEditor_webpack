@@ -4,7 +4,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+var autoprefixer = require('autoprefixer');
 
 module.exports = function (env) {
     return {
@@ -48,12 +48,13 @@ module.exports = function (env) {
                 //         use: "css-loader"
                 //     })
                 // },
-                // css/less
+
+                // css/less 自动添加厂商前缀
                 {
                     test: /\.(less|css)$/,
                     use: ExtractTextPlugin.extract({ // 打包css
                         fallback: 'style-loader',
-                        use: ['css-loader','less-loader']
+                        use: ['css-loader','postcss-loader', 'less-loader']
                     })
                 },
                 {
@@ -94,6 +95,11 @@ module.exports = function (env) {
                 $: "jquery",
                 jQuery: "jquery"
             }),
-        ]
+            new webpack.LoaderOptionsPlugin({ //浏览器加前缀
+                options: {
+                    postcss: [require('autoprefixer')({browsers:['last 5 versions']})]
+                }
+            }),
+        ],
     }
 }
