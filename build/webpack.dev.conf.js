@@ -39,7 +39,7 @@ module.exports = function (env) {
 
             /*编译生成html代码并在html中插入<script>标签*/
             new HtmlWebpackPlugin({
-                favicon: path.join(__dirname, '../src/favicon.ico'),
+                // favicon: path.join(__dirname, '../src/favicon.ico'),
                 filename: path.resolve(__dirname + '/../dist/index.html'),   // 目标文件
                 template: path.resolve(__dirname + '/../src/index.html'), //模板文件
                 inject: 'body', // 要把script插入到标签里

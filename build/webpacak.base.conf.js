@@ -83,7 +83,8 @@ module.exports = function (env) {
         plugins: [
             /* 所有$都会加载对应的jquery模块，其他同 */
             new webpack.ProvidePlugin({
-              "$": "jquery"
+                $: "jquery",
+                jQuery: "jquery"
             }),
         ]
     }
