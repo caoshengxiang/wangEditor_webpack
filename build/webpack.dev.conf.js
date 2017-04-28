@@ -9,6 +9,8 @@ var baseConfig = require('./webpacak.base.conf');
 // 生成html
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 
 module.exports = function (env) {
     return webpackMerge(baseConfig(env), {
@@ -45,6 +47,13 @@ module.exports = function (env) {
                 inject: 'body', // 要把script插入到标签里
                 // hash: true,  //代表js文件后面会跟一个随机字符串,解决缓存问题
                 // chunks: ["index"], // chunks这个参数告诉插件要引用entry里面的哪几个入口
+            }),
+
+            //提取出来的样式放在style.css文件中
+            new ExtractTextPlugin({
+                filename: 'css/styles.css',
+                disable: false,
+                allChunks: true
             }),
         ]
     })

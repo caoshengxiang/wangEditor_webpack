@@ -3,7 +3,7 @@
  */
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = function (env) {
@@ -40,10 +40,18 @@ module.exports = function (env) {
                     exclude: /node_modules/,
                     include: [path.resolve(__dirname, '../src/')]
                 },
+                // css
+                // {
+                //     test: /\.css$/,
+                //     use: ExtractTextPlugin.extract({
+                //         fallback: "style-loader",
+                //         use: "css-loader"
+                //     })
+                // },
                 // css/less
                 {
                     test: /\.(less|css)$/,
-                    use: ExtractTextWebpackPlugin.extract({ // 打包css
+                    use: ExtractTextPlugin.extract({ // 打包css
                         fallback: 'style-loader',
                         use: ['css-loader','less-loader']
                     })
