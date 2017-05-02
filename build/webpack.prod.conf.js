@@ -16,8 +16,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 // css样式从js文件中分离出来,需要通过命令行安装 extract-text-webpack-plugin依赖包
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// 这是一个Webpack插件，可以将单个文件或整个目录复制到构建目录中。
-var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = function (env) {
     return webpackMerge(baseConfig(env), {
@@ -73,14 +71,6 @@ module.exports = function (env) {
                 // chunksSortMode: 'dependency'
             }),
 
-            // 复制静态目录
-            new CopyWebpackPlugin([
-                {
-                    from: path.resolve(__dirname, '../static'),
-                    to: 'static',
-                    ignore: ['.*']
-                }
-            ])
         ],
     })
 }

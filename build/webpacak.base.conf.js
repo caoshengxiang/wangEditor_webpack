@@ -4,7 +4,12 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+// 自动添加厂商前缀
 var autoprefixer = require('autoprefixer');
+
+// 这是一个Webpack插件，可以将单个文件或整个目录复制到构建目录中。
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = function (env) {
     return {
@@ -100,6 +105,14 @@ module.exports = function (env) {
                     postcss: [require('autoprefixer')({browsers:['last 5 versions']})]
                 }
             }),
+            // 复制静态目录
+            new CopyWebpackPlugin([
+                {
+                    from: path.resolve(__dirname, '../static'),
+                    to: 'static',
+                    ignore: ['.*']
+                }
+            ])
         ],
     }
 }
